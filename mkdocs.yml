@@ -1,0 +1,68 @@
+site_name: clothoid-lab
+site_description: Exact clothoid geometry for ornament, and the rational spine layer
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Dark
+    - scheme: slate
+      primary: brown
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Light
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+docs_dir: site_src
+site_dir: site
+nav:
+  - Home: index.md
+  - Plan: PLAN.md
+  - Vocabulary: VOCABULARY.md
+  - Documentation:
+      - Index: docs/README.md
+      - Current truth: docs/HANDOFF.md
+      - Durable reference: docs/HANDOVER.md
+      - Backlog: docs/BACKLOG.md
+      - Review: docs/REVIEW.md
+      - Philosophy: docs/PHILOSOPHY.md
+      - Clearance: docs/CLEARANCE.md
+      - Junctions: docs/JUNCTION.md
+      - Primals: docs/PRIMAL.md
+      - Caps: docs/caps.md
+      - The 3125 lattice: docs/clothoid-grid-3125.md
+      - The web MVP: docs/web.md
+      - History: docs/PROJECT.md
+      - Older tasks: docs/TODO.md
+  - Spine layer:
+      - Explainer: spine/EXPLAINER.md
+      - Six studies: spine/GALLERY.md
+      - Extremes: spine/EXTREMES.md
+      - Placement and transfer: spine/TRANSFER.md
+      - The cloud: spine/CLOUD.md
+      - The cloud in four arcs: spine/CLOUD-FORM.md
+      - Spine handover: spine/HANDOVER.md
+      - Spine audit: spine/AUDIT.md
+  - Generated pages: generated.md
+  - Ornaments source: ORNAMENTS.md
+  - House conventions: GRID8.md
+  - Contributing: CONTRIBUTING.md
+  - Changelog: CHANGELOG.md
+  - Code of conduct: CODE_OF_CONDUCT.md
+  - Licence: LICENSE.md
