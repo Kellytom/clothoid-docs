@@ -1,0 +1,16 @@
+{
+  "ignores": [
+    ".github/ISSUE_TEMPLATE/**",
+    "context/GRID8.md",
+    "site/**",
+    "site_src/**"
+  ],
+  "config": {
+    "MD013": false,
+    "MD024": false,
+    "MD025": false,
+    "MD033": false,
+    "MD036": false,
+    "MD041": false
+  }
+}
