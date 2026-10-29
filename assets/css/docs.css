@@ -1,0 +1,33 @@
+/* Shared styling for the public documentation pages.
+   Palette and type follow the generated pages in docs/. */
+:root {
+  --paper: #f6f1e4; --card: #fffdf7; --ink: #2e2413; --muted: #7b6c4e;
+  --line: #d8ccae; --gold: #8c6a21; --red: #b23a2b; --blue: #1f5fa8;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --serif: "Iowan Old Style", Georgia, serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink);
+  font: 16px/1.62 var(--serif); }
+main { max-width: 760px; margin: 0 auto; padding: 44px 22px 90px; }
+h1 { font-size: 31px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -.01em; }
+h2 { font-size: 20px; margin: 38px 0 8px; color: #5b4718;
+  border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+p { margin: 0 0 12px; }
+code, pre { font: 12.5px/1.55 var(--mono); }
+pre { background: var(--card); border: 1px solid var(--line); border-radius: 4px;
+  padding: 11px 13px; overflow-x: auto; margin: 0 0 16px; }
+figure { margin: 22px 0 24px; }
+figure svg, figure img { display: block; max-width: 100%; border: 1px solid #e2d7bd;
+  border-radius: 4px; background: var(--card); }
+figcaption { font: 12px/1.5 var(--mono); color: var(--gold); margin-top: 7px; }
+blockquote { margin: 16px 0; padding: 10px 16px; border-left: 3px solid var(--red);
+  background: var(--card); font-size: 17px; }
+table { width: 100%; border-collapse: collapse; font: 12.5px/1.5 var(--mono);
+  margin: 0 0 18px; }
+th, td { border-top: 1px solid var(--line); padding: 6px 5px; text-align: left;
+  vertical-align: top; }
+th { color: var(--gold); font-weight: 500; }
+.lead { color: var(--gold); margin: 0 0 26px; }
+nav.pages { font: 12.5px var(--mono); }
+nav.pages a { color: var(--blue); margin-right: 14px; }

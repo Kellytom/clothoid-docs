@@ -33,3 +33,9 @@ to the deployment, the reference photographs, or the local tooling.
 The spine layer is a separate curve system from the clothoid engine: an Euler
 polygon whose headings match a clothoid at the nodes, with rational points,
 joins and mirrors. `pythagorean-spiral/docs/EXPLAINER.md` is the long version.
+
+## Assets and examples
+
+`assets/css/` holds the shared stylesheet and the app CSS; `examples/` holds
+three runnable snippets (curl, ribbon, frames). `BUILDING.md` says which
+pages rebuild here and which need the private repository.
