@@ -97,6 +97,28 @@ def main() -> int:
         lines.append(f"- [{name}]({href})")
     (SRC / "generated.md").write_text("\n".join(lines) + "\n")
 
+    site = "https://kellytom.github.io/clothoid-docs"
+    (SRC / "robots.txt").write_text(
+        "User-agent: *\nAllow: /\nSitemap: " + site + "/sitemap.xml\n")
+    (SRC / "llms.txt").write_text(
+        "# clothoid-lab\n\n"
+        "> Exact clothoid geometry for ornament, and a rational spine layer of\n"
+        "> Pythagorean turn-chains. This file indexes the documentation for\n"
+        "> language models.\n\n"
+        "## Start\n\n"
+        f"- [Plan]({site}/PLAN/): objective, work order, promotion gate.\n"
+        f"- [Vocabulary]({site}/VOCABULARY/): anchor, node frame, spine, knot;\n"
+        "  Piece, Trace, Contact, Section, Bundle.\n"
+        f"- [Docs index]({site}/docs/): current truth and durable reference.\n"
+        f"- [Current truth]({site}/docs/HANDOFF/)\n"
+        f"- [Durable reference]({site}/docs/HANDOVER/)\n"
+        f"- [Spine explainer]({site}/spine/EXPLAINER/): the long version.\n"
+        f"- [Generated pages]({site}/generated/): boards, studies, terminals.\n"
+        f"- [Contributing]({site}/CONTRIBUTING/): voice and review checklist.\n\n"
+        "## Repository\n\n"
+        "- https://github.com/Kellytom/clothoid-docs\n"
+        "- Raw files: https://raw.githubusercontent.com/Kellytom/clothoid-docs/master/\n")
+
     cmd = [sys.executable, "-m", "mkdocs", "build", "-f", str(ROOT / "mkdocs.yml")]
     print(" ".join(cmd))
     return subprocess.call(cmd)

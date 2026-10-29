@@ -1,4 +1,7 @@
 site_name: clothoid-lab
+site_url: https://kellytom.github.io/clothoid-docs/
+repo_url: https://github.com/Kellytom/clothoid-docs
+repo_name: Kellytom/clothoid-docs
 site_description: Exact clothoid geometry for ornament, and the rational spine layer
 theme:
   name: material
@@ -20,6 +23,8 @@ theme:
     - navigation.top
     - search.suggest
     - content.code.copy
+plugins:
+  - search
 markdown_extensions:
   - admonition
   - attr_list
