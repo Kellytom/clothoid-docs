@@ -39,3 +39,18 @@ joins and mirrors. `pythagorean-spiral/docs/EXPLAINER.md` is the long version.
 `assets/css/` holds the shared stylesheet and the app CSS; `examples/` holds
 three runnable snippets (curl, ribbon, frames). `BUILDING.md` says which
 pages rebuild here and which need the private repository.
+
+## Repository layout
+
+| Path | What it holds |
+|---|---|
+| `docs/` | Current truth, durable reference, backlog, subject notes, generated HTML. |
+| `pythagorean-spiral/` | The spine layer: package, generators, its own docs and figures. |
+| `clothoid_lab/` | The engine's Python: Piece, Trace, Contact, Section, Bundle, grammar. |
+| `web/` | The local web MVP: stdlib server and static page. |
+| `context/` | The plan, the vocabulary, the ornaments corpus, the house conventions, the board source. |
+| `examples/` | Three runnable snippets. |
+| `assets/css/` | The shared stylesheet and the app CSS. |
+
+Project conventions: `CONTRIBUTING.md`. Licence: `LICENSE.md` (CC BY 4.0 for
+prose and figures, MIT for code). Changes: `CHANGELOG.md`.
