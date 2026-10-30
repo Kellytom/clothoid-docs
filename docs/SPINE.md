@@ -43,8 +43,9 @@ Two rules follow:
   It is made by a **cusp**, the swap above, which is exact even in the float
   path.
 
-The drawn curve is an interpolation, not the chain: the cubics sit within about
-1.4% of the ideal curvature law (rms 0.8%), which is the chain's own resolution.
+The drawn curve is an interpolation, not the chain: measured on the curl study,
+the cubics sit within about 1.4% of the ideal curvature law (rms 0.8%), which is
+the chain's own resolution.
 Do not describe the drawn result as exact geometry.
 
 ## 3. The words
@@ -106,8 +107,8 @@ it.
    solved (the arc rule by default, Menger curvature opt-in). A curvature
    reversal is kept as a **sharp corner** by default, and a single-chord span is
    drawn as its chord, so a cubic is never asked to un-bulge inside one span.
-   The fit sits within about 1.4% of the ideal curvature law (rms 0.8%) — the
-   chain's own resolution. It is an interpolation, not a second exact curve.
+   In the curl study the fit sits within about 1.4% of the ideal curvature law
+   (rms 0.8%) — the chain's own resolution. It is an interpolation, not a second exact curve.
 
 5. **Add ribbon thickness.** The width is the *total* width, so 10 mm means
    5 mm each side. The rail is a miter offset of the exact points, with a
