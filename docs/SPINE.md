@@ -72,11 +72,17 @@ it.
 
 ## 5. Walkthrough: an S-curve ribbon
 
-1. **Triangle and step.** `for_angle(3.0)` returns the triangle
-   `39-760-761`, whose angle is 2.9376°, and we take 6 mm chords.
+1. **Triangle and step.** `for_angle(3.0)` returns the triangle `39-760-761`,
+   whose angle is 2.9376°, and we take 6 mm chords.
+
 2. **Turn schedule.** `+1, +2, +3, +4, +5, -5, -4, -3, -2, -1`. It curls one
-   way, reverses, and its numbers sum to zero, so the exit is exactly east.
-3. **Build the chain.**
+   way, reverses, and its numbers sum to zero, so the exit is exactly east with
+   no angle drift.
+
+3. **Step through the points.** Starting at (0, 0) facing east, each chord
+   applies its whole-number turn and steps 6 mm. The headings are fractions
+   whose denominator is a power of 761 — one factor per turn, not a single 761
+   — so every joint is an exact rational point.
 
    ```python
    from fractions import Fraction
@@ -95,24 +101,39 @@ it.
    Ten chords, a peak heading of 44.06°, and a final point of
    (56.05, 16.15) in millimetres.
 
-4. **Give it width.** A 2 mm ribbon with tapered ends:
+4. **Smooth the corners.** The drawn curve is not the polygon: each span is a
+   cubic whose end tangents come from the chord headings, and whose arms are
+   solved (the arc rule by default, Menger curvature opt-in). A curvature
+   reversal is kept as a **sharp corner** by default, and a single-chord span is
+   drawn as its chord, so a cubic is never asked to un-bulge inside one span.
+   The fit sits within about 1.4% of the ideal curvature law (rms 0.8%) — the
+   chain's own resolution. It is an interpolation, not a second exact curve.
+
+5. **Add ribbon thickness.** The width is the *total* width, so 10 mm means
+   5 mm each side. The rail is a miter offset of the exact points, with a
+   rational taper at the ends:
 
    ```python
-   outline = ribbon.outline(path.nodes, Fraction(2), taper=2)
+   outline = ribbon.outline(path.nodes, Fraction(10), taper=2)
    ```
 
-   The outline has 22 points, one per node on each rail.
+   The outline has one point per rail per node — 22 points here. One caveat:
+   the offset does **not** detect a pinched or self-crossing rail. Where the
+   width exceeds the inside radius the rail folds through itself, and the
+   drawing shows it; clearance is measured separately, by `piece_clearance()`
+   in the main package, not here.
 
-5. **Place it on the sheet.** The largest uniform scale that fits 200 × 250 with
+6. **Place it on the sheet.** The largest uniform scale that fits 200 × 250 with
    an 8 mm margin, snapped to thousandths:
 
    ```python
    ints, scale = place.fit(outline, box=(200, 250), margin=8)
    ```
 
-   The scale is 2.507, and the drawing occupies 8.0–192.0 mm across and
-   8.0–50.8 mm up. Every point is an integer, so the file can be stored,
-   mirrored and compared without a float deciding where a corner is.
+   The scale is 0.942 for the 10 mm ribbon, and the drawing occupies
+   8.0–192.0 mm across and 8.0–37.1 mm up. Every point is an integer, so the
+   file can be stored, mirrored and compared without a float deciding where a
+   corner is.
 
 That is the whole method: exact plan, rational rails, and one rational
 placement.
