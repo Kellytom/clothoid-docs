@@ -1,6 +1,24 @@
 # Work items, plates and the board
 
+An ornament is finished twice: once by a sketch of what the designer wants
+ideally, and once as a drawing that can be built. The work board keeps those two
+apart. Every idea is a plate — a picture, a short brief, and a status — and every
+job that makes a plate buildable is a work item. That way the designer can start
+one curve, one clearance, or a comparison of plates, without reading code or
+holding the whole production in mind. The work board also answers the practical
+questions at a glance: what is built, what needs another pass, and what comes
+next.
+
 The project keeps three lists, and they are easy to confuse:
+
+An ornament is finished twice: once by a sketch of what the designer wants ideally, and once as a drawing that can be
+built. The work board keeps those two apart. Every idea is a plate — a picture,
+a short brief, and a status — and every job that makes a plate buildable is a
+work item. That way the designer can start one curve, one clearance, or a
+comparison of plates, without reading code or holding the whole production in
+mind. The work board also answers the practical questions at a glance: what is
+built, what needs another pass, and what comes next.
+
 
 - **P** numbers are **plates**: pictures on the ornament board.
 - **W** numbers are **work items**: jobs to be built.
