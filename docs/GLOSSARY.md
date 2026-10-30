@@ -2,7 +2,7 @@
 
 The two sides of the project use different words for overlapping ideas. This
 page defines each word as the code uses it, then maps the two vocabularies. The
-short canonical list is in [Vocabulary](VOCABULARY.md); this page is the longer,
+short canonical list is in [Vocabulary](../VOCABULARY.md); this page is the longer,
 plainer version.
 
 ## The curve engine (`clothoid_lab`)
