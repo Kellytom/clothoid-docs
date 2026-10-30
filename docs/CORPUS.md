@@ -1,79 +1,92 @@
 # The recovered corpus
 
-The project began as two ornament pages drawn with cubic Bézier curves: the
-Stage II plates and the LAC (log-aesthetic) page. We cut their ends and their
-centre lines out and stored them as data. The source repository and its
-photographs are private; no photograph is published here.
+The project began with two historical ornament sources drawn with cubic Bézier
+curves: the **Stage II plates** and the **LAC (log-aesthetic curve) page**. We
+extracted their terminal ends and centrelines into structured data. The source
+repository and its photographs are private; no photograph is published here.
 
-## Three things: a span, a spine, a plate
+## Spans, spines and plates
 
-These words are used throughout, and they nest:
+These three words nest from part to whole:
 
-- A **span** is one cubic Bézier between two nodes: a single piece of a line.
-- A **spine** is a run of spans — the whole centre line of one drawn band.
-- A **plate** is one page of the source: it holds one or more spines.
+- A **span** is one cubic Bézier between two nodes — one piece of a line.
+- A **spine** is an ordered run of continuous spans — the complete centreline of
+  one drawn band.
+- A **plate** is one source sheet or layout, holding one or more spines.
 
-So a span is a piece, a spine is the line made of those pieces, and a plate is
-the sheet that holds several lines.
+In one line: **span (a piece) → spine (a line) → plate (a sheet)**.
 
-## Which curve family a spine is
+## Curve families
 
-Each **spine** is tagged with the family it approximates. The tag is on the
-spine, not on the span and not on the plate.
+Each **spine** is tagged with the curve family it approximates. The tag belongs
+to the whole spine, not to a single span or plate.
 
 | Tag | In plain words |
 |---|---|
 | `line` | a straight run |
 | `arc` | part of a circle |
-| `euler` | an Euler spiral, which is the clothoid this project draws |
-| `logaesthetic` | a family whose bend follows a fixed aesthetic ratio |
+| `euler` | an Euler spiral: the clothoid this project draws |
+| `logaesthetic` | a curve whose rate of bending follows a fixed aesthetic ratio |
 | `reflected` | a mirrored copy of another spine |
-| `hyperbezier` | a different family altogether; it is *not* a clothoid |
-| `member` | one member of a group, such as a leaf in a set |
+| `hyperbezier` | a different curve family from the source page; **not** a clothoid |
+| `member` | one stroke inside a composite group, such as a leaf in a cluster |
 
-Plates are not sorted by family. On Stage II, **19 of the 20 plates mix
-families**; the only single-family plate is Fig. 7, which is `euler` throughout.
-The LAC page is the opposite: every plate there is one family by construction —
-30 `logaesthetic` plates and one `arc` plate. There is no plate that is only
-lines, and none that is only arcs on Stage II.
+### How the plates are distributed
+
+- **Stage II:** 19 of the 20 plates mix families. The only single-family sheet is
+  **Fig. 7**, which is `euler` throughout. No plate is only lines or only arcs.
+- **LAC page:** every plate is single-family by design — 30 `logaesthetic`
+  plates and one `arc` plate.
 
 ## What was recovered
 
-| From | Plates | Spines | Spans | Ends |
-|---|---|---|---|---|
+| Source | Plates | Spines | Spans | Ends |
+|---|---:|---:|---:|---:|
 | Stage II | 20 | 90 | 586 | 88 |
 | LAC page | 31 | 31 | 306 | 62 |
 
-On Stage II the spines divide as euler 37, logaesthetic 16, line 12,
-hyperbezier 8, member 8, arc 6 and reflected 3.
+Across the 90 Stage II spines: `euler` 37, `logaesthetic` 16, `line` 12,
+`hyperbezier` 8, `member` 8, `arc` 6, `reflected` 3.
 
 ## How close each family is to a clothoid
 
-Fitting one clothoid to each spine gives a parity number: the typical error as a
-fraction of one chord. `line`, `arc`, `euler` and `logaesthetic` are within a few
-hundredths of a percent. `hyperbezier` is the exception at 35.8 per cent, which
-is expected — it is a different kind of curve, and the measurement is there to
-show that rather than to hide it.
+Fitting one clothoid to each spine gives a parity measurement: the typical
+(median) error as a fraction of one chord, and the worst case.
+
+| Family | Typical error | Worst |
+|---|---|---|
+| `line` | 0.00% | — |
+| `arc` | 0.02% | — |
+| `euler` | 0.01% | 0.12% |
+| `logaesthetic` | 0.01% | 0.16% |
+| `member`, `reflected` | 0.03% | — |
+| `hyperbezier` | 35.8% | 78 chords |
+
+`hyperbezier` is expected to diverge: it is a different kind of curve, and the
+measurement records that rather than smoothing it over.
 
 ## What an end record holds
 
-An **end** is one cut end of a band: the join where it leaves the work, the tip,
-and the join where it returns. Each one is stored as a few cubic spans plus:
+An **end** is one cut end of a band: the join where it leaves the body, the tip,
+and the join where it returns. Each record holds a few cubic spans and:
 
-| Field | In plain words |
+| Field | Meaning |
 |---|---|
-| `spans` | the cubic pieces of the end |
-| `end` | which end of the band it is, `near` or `far` |
-| `plate` | which plate it came from |
+| `spans` | the cubic pieces that form the end |
+| `end` | which end of the band it is: `near` or `far` |
+| `plate` | the source plate it came from |
 | `taper_fraction` | how much of the band the narrowing takes |
-| `full_width` | the band's width before narrowing |
-| `d` | a ready-made path for drawing it |
+| `full_width` | the band's width before the taper |
+| `d` | a ready-to-render SVG path |
 | `framework` | the point and outward direction where it was cut |
 
-The taper is measured between the two edges, not guessed: the middle value is
-17 per cent of the band on Stage II and 18 per cent on the LAC page.
+> **The taper is measured, not assumed.** It is taken between the two edges of
+> the band; the median is 17 per cent of the band on Stage II and 18 per cent on
+> the LAC page.
 
-The framework looks like this, and is already converted to y upward:
+### The cut framework
+
+Frameworks are stored already converted to +y upward, so they match the app:
 
 ```json
 "framework": {
@@ -84,14 +97,14 @@ The framework looks like this, and is already converted to y upward:
 }
 ```
 
-`anchor` is where the end was cut; `heading` points away from the work, the
-direction a cap or another stroke would continue.
+`anchor` is the point where the end was cut; `heading` points away from the
+work, the direction a cap or another stroke would continue.
 
 ## Units and direction
 
-Everything is stored as it was found on the page: **y increases downward**. The
-app is **y increases upward**, and the frameworks have been converted. Convert
-before quoting any coordinate.
+Everything else is stored as it was found on the page: **y increases downward**.
+The app is **y increases upward**, and the frameworks have been converted.
+Convert before quoting any other coordinate.
 
 ## Rebuilding the data
 
