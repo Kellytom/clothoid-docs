@@ -22,9 +22,10 @@ it, reports on it, and downloads SVG.
 
 Computers count in decimals, and a few hundred accumulated rotations leave a
 closed loop a fraction off its start. The spine layer avoids that by choosing
-its rotations from whole-number right triangles: a 3-4-5 triangle turns by an
-angle whose sine and cosine are exact fractions, so every heading and every node
-is rational, and a chain closes on an exact grid line.
+its rotations from whole-number right triangles. A 3-4-5 triangle turns by an
+angle whose sine and cosine are exactly 3/5 and 4/5, so rotating a point is
+`(4x - 3y, 3x + 4y) / 5` — no trigonometry, no rounding. Every heading and
+every node is rational, and a chain closes on an exact grid line.
 
 What that buys, and what it costs:
 
@@ -60,15 +61,22 @@ The intended pipeline, from exact plan to finished page:
 
 **This connection is not wired yet.** Today the two tools are separate: the
 spine layer is not imported by `clothoid_lab`, and the terminal corpus carries
-node frameworks that nothing consumes. The four conditions that change that are
-listed in the plan, and until they hold, "central" describes intent rather than
-practice.
+node frameworks that nothing consumes. Four conditions promote it, and all four
+must hold:
+
+1. `clothoid_lab` imports a chain and builds a `Piece`/`Trace` from its anchors.
+2. One spine renders on the 200 × 250 mm sheet, +y up, through `svg.document`.
+3. `piece_clearance()` measures it, and a declared contact passes.
+4. One W03 study is drawn entirely from Pythagorean chains.
+
+Until then, "central" describes intent rather than practice.
 
 ## Where to look
 
 | If you want | Read |
 |---|---|
 | Why the project exists and in what order | [The plan](../PLAN.md) |
+| To use the browser tool | [Web app notes](web.md) (full guide in preparation) |
 | The words, and how the two sides' vocabularies map | [Vocabulary](../VOCABULARY.md) |
 | What is true today, and what is next | [Current truth](HANDOFF.md) |
 | The spine layer in depth | [Spine explainer](../spine/EXPLAINER.md) |
