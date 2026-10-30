@@ -41,6 +41,7 @@ nav:
   - Plan: PLAN.md
   - Vocabulary: VOCABULARY.md
   - Architecture: docs/ARCHITECTURE.md
+  - Web application guide: docs/WEB-GUIDE.md
   - Documentation:
       - Index: docs/README.md
       - Current truth: docs/HANDOFF.md
