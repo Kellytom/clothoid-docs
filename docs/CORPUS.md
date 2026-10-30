@@ -1,24 +1,27 @@
 # The recovered corpus
 
-The project did not start from a blank page. It started from two old ornament
-pages, recovered as data: the Stage II plates and the LAC (log-aesthetic) page.
-The source repository is private and large, and none of its photographs are
-published.
+The project did not begin with a blank page. It began with two old ornament
+pages: the Stage II plates and the LAC (log-aesthetic) page. We cut their ends
+and centre lines out and stored them as data. The original pages and their
+photographs are private, and none of the photographs are published here.
 
 ## What was recovered
 
-| Corpus | Plates | Ends or spines |
+| From | Plates | What was taken |
 |---|---|---|
-| Stage II terminals | 20 | 88 ends |
-| LAC terminals | 31 | 62 ends |
-| Stage II spirals | 20 | 90 spines |
-| LAC spirals | 31 | 31 spines |
+| Stage II | 20 | 88 ends, 90 spines |
+| LAC page | 31 | 62 ends, 31 spines |
 
-## Terminals
+A **spine** here means the centre line of a drawn band. An **end** is one cut
+end of a band: the join where it leaves the work, the tip, and the join where it
+returns.
 
-Each terminal is a cut end: join, tip, join. Its JSON carries `spans` (cubic
-segments), `tip`, `end` (`near` or `far`), `plate`, the measured
-`taper_fraction`, the `full_width`, a ready-made `d` path, and a `framework`:
+## What an end record holds
+
+Each end is stored as a few cubic curve pieces (`spans`) plus a note of which end
+it is (`near` or `far`), which plate it came from, how much of the band the taper
+takes (`taper_fraction`), the full width, a ready-made path (`d`), and a
+**framework**:
 
 ```json
 "framework": {
@@ -29,27 +32,34 @@ segments), `tip`, `end` (`near` or `far`), `plate`, the measured
 }
 ```
 
-The taper fraction is measured between the rails, not assumed: the medians are
-17 per cent on Stage II and 18 on the LAC page.
+In plain words: `anchor` is the exact point where the end was cut, `heading` is
+the direction pointing away from the work, and both are given with y increasing
+upward so they match the app.
 
-## Spirals
+The taper is measured, not guessed: the middle value is 17 per cent of the band
+on Stage II and 18 per cent on the LAC page.
 
-Each recovered spine keeps the page's own cubics and a `data-span` tag: `line`,
-`arc`, `euler`, `logaesthetic`, `reflected`, `hyperbezier`, `member`. Fitting one
-clothoid per span gives the parity numbers: median error per chord is 0.00% for
-`line`, 0.01% for `euler` and `logaesthetic`, 0.02–0.03% for the rest, and
-`hyperbezier` diverges as it must (35.8% median).
+## What a spine record holds
 
-## Units and orientation
+Each spine keeps the page's own curve pieces and a label saying what kind of
+curve it is: `line`, `arc`, `euler`, `logaesthetic`, `reflected`, `hyperbezier`,
+or `member`.
 
-Everything is stored as found on the page: **y down**. The app is **y up**, and
-the terminal frameworks are converted to +y up. Convert before quoting.
+Fitting one clothoid to each piece gives the parity numbers used in the studies.
+Typical error is a hundredth of a percent of a chord; `hyperbezier` is the
+exception, at 35.8 per cent, because it is a different kind of curve.
 
-## Regenerating
+## Units and direction
 
-`scripts/extract-terminals.py` and `scripts/extract-spirals.py` fetch the pages,
-write the JSON and build the galleries. The terminal extractor can add
-frameworks without refetching:
+Everything is stored as it was found on the page: **y increases downward**. The
+app is **y increases upward**, and the frameworks have already been converted.
+Convert before quoting any coordinate.
+
+## Rebuilding the data
+
+`scripts/extract-terminals.py` and `scripts/extract-spirals.py` read the pages,
+write the JSON and build the galleries. The terminal extractor can also add or
+refresh frameworks without fetching the pages again:
 
 ```sh
 .venv/bin/python scripts/extract-terminals.py --frameworks-only

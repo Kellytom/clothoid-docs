@@ -3,21 +3,21 @@
 ## The engine
 
 The clothoid geometry comes from the C++ library by **Enrico Bertolazzi** and
-**Marco Frego** (the clothoid / G1 Hermite library), vendored in `vendor/` and
-built into the app image. The Python side wraps it; the maths is theirs.
+**Marco Frego**. It is kept in `vendor/` and built into the app image. The Python
+side wraps it; the mathematics is theirs.
 
-## The reference corpus
+## The recovered plates
 
-The recovered plates come from the private `ornaments` repository. Its reference
-photographs are measurement input, not publication; they are not in this
-repository, and the public docs omit the figures that embed them.
+The plates were recovered from the private `ornaments` repository. Its
+photographs were used for measurement only and are not published here; the
+public pages leave out the pictures that contain them.
 
-Where images from Wikimedia Commons were used for measurement, the artist and
-licence are recorded in the private `reference/manifest.json` (CC BY-SA and
-GFDL, per file). No such image is redistributed here.
+Where a Wikimedia Commons image was used for measurement, its author and licence
+are recorded in the private `reference/manifest.json` (CC BY-SA and GFDL, per
+file). No such image is redistributed here.
 
-## The documentation
+## This documentation
 
-Prose and figures are CC BY 4.0; code excerpts and the spine package are MIT.
-See `LICENSE.md`. The type is Georgia and the system monospace stack; no font is
-redistributed.
+The prose and figures are licensed CC BY 4.0; code excerpts and the spine package
+are MIT. See `LICENSE.md`. The type is Georgia with the system monospace stack;
+no font is redistributed.

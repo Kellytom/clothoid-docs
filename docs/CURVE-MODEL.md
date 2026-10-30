@@ -1,63 +1,91 @@
 # The curve model
 
-The engine draws one thing: a **Design** — an anchor and a list of
-**segments** — then wraps it in a **Piece** so it can gain width, terminals,
-mirrors and contacts.
+The engine draws one line at a time. You give it a starting point, a direction,
+and a list of pieces; each piece bends by a stated amount, and that bend changes
+steadily along the piece. It then wraps the line in a drawing so it can have
+thickness, shaped ends, a mirror image, and a list of places it is allowed to
+touch something else.
 
-## Design and segment
+## The recipe: a design
 
 ```json
 {"anchor": {"x": 40, "y": 80, "angle": 0},
  "segments": [{"kappa0": 0, "kd": 0.002, "length": 40}]}
 ```
 
-A segment is a clothoid arc: curvature runs linearly in arc length,
-`kappa(s) = kappa0 + kd * s`. `kappa0: null` continues the previous segment's
-end curvature, which is what makes a G2 join. Units are millimetres, `angle` is
-radians, 0 is east, and y increases upward.
+| Field | In plain words |
+|---|---|
+| `anchor` | Where the line starts, and which way it points. |
+| `segments` | The pieces of the line, in order. |
+| `kappa0` | How tightly the line is bending at the start of this piece. |
+| `kd` | How quickly that bend changes along the piece. |
+| `length` | How long the piece is. |
 
-## Piece and trace
+"Curvature" is only how tight the bend is: a small number is nearly straight, a
+large one is a tight curl. `kappa0: null` means "carry on with the bend the
+previous piece ended with", so the line does not jolt at the join.
 
-A **Piece** is one drawing: named **traces**, an optional mirror with per-trace
-override, layers, and declared **contacts**. A **Trace** is one full line: a
-spine, an optional ribbon width, its terminals, and its mirror rule.
-`render_piece()` builds every trace once and writes one SVG, so the page, the
-frame and the y-flip are decided in a single place.
+Distances are millimetres, angles are radians, zero points east, and y increases
+upward.
 
-## Terminals
+## The drawing: a piece
 
-**Terminal** is the umbrella. A **cap** closes an end without turning the stroke
-past 120°: `butt`, `point`, `arc` (a 5 mm dome), `round` (a half-width dome).
-A **taper** narrows over a length: `taper`, `cone`, and `bulb` (the Stage II
-width law, not the wrapped ornament bulb). Hairpins and wrapped bulbs turn past
-the limit, so they are *turned terminals*, and they are not built yet.
+A **Piece** is the whole drawing. It holds named **traces**, an optional mirror
+image (which can be overridden per trace), layers, and a list of declared
+**contacts**.
 
-## Junctions and fillets
+A **Trace** is one full line: its centre line, an optional thickness, the shapes
+at its two ends, and whether it is mirrored.
 
-A **junction** is a branch meeting a trunk with a declared merge: it carries the
-corner, the clearance that must survive through the crotch, the fillet or blend,
-the taper, and the contacts. A **fillet** is the tangent arc at a corner: G1 by
-construction, with a curvature step at each touch point. A clothoid blend, which
-would remove the step, is planned.
+`render_piece()` builds every trace once and writes a single SVG, so the sheet,
+the scale and the upward direction are decided in one place.
 
-## Section and bundle
+## The ends
 
-A **Section** is a reading, not a shape: one station across a full line, with
-the spine point, tangent, width and the two rails. A **Bundle** is the design
-box: named full lines that must not touch, with an internal clearance and a
-footprint.
+**Terminal** is the general word for how a line ends.
 
-## Clearance
+- A **cap** closes an end without the line turning more than 120°: `butt` (cut
+  square), `point` (sharp), `arc` (a 5 mm dome), `round` (a half-width dome).
+- A **taper** narrows the line over a length: `taper`, `cone`, and `bulb` (the
+  old Stage II width curve, not a wrapped ornament bulb).
 
-`piece_clearance()` measures the minimum gap between inks and lists crossings.
-A crossing is allowed only where a **Contact** declares it legal. Measurements
-carry a 2·tol band, so the report says *violation*, *warning* or *pass* rather
-than pretending the last tenth of a millimetre is known.
+Ends that turn further than 120° are *turned terminals*. They are not built yet.
 
-## The grades
+## Corners and joins
 
-| Grade | Means | Here |
-|---|---|---|
-| G0 | ends touch, directions differ | a corner, a cusp |
-| G1 | directions match, curvature steps | every engine join, by construction |
-| G2 | directions and curvature match | only where a width law or blend supplies it |
+A **fillet** rounds a corner with a short arc that touches both sides. The line
+and the arc meet in the same direction, but the bend suddenly becomes tighter
+where the arc starts and looser where it ends.
+
+A **junction** is a branch meeting a trunk, with a declared place for them to
+merge. It carries the corner, the gap that must survive inside the fork, the
+rounding or blend, the taper, and the declared contacts. A clothoid blend, which
+would remove the sudden change in bend, is planned.
+
+## Reading a line across its width
+
+A **Section** is a slice across a line at one place: the centre point, the
+direction, the width, and the two edges.
+
+A **Bundle** is a box of named full lines that must not touch, with a stated
+minimum gap and a footprint. The box is for placing the group, not for clipping
+it.
+
+## Gaps between lines
+
+Clearance is the smallest distance between two drawn lines, plus a list of
+places where they cross. A crossing is allowed only where a **Contact** says it
+is intended. Every measurement carries a small margin of error, so the report
+says *pass*, *warning* or *violation* rather than pretending the last tenth of a
+millimetre is known.
+
+## Joins, in plain words
+
+| Grade | What it means |
+|---|---|
+| **G0** | The ends touch, but the lines point in different directions: a corner. |
+| **G1** | They point the same way, so there is no corner, but the bend changes suddenly. |
+| **G2** | They point the same way *and* bend by the same amount: no visible change at all. |
+
+The engine's joins are G1. G2 appears where a width law or a blend supplies it,
+and not at every corner.

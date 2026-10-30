@@ -23,6 +23,20 @@ names them).
 3. Numbers, in a table or a code block.
 4. What is not done, and why.
 
+## Plain English first
+
+Every section opens with a sentence a non-specialist can read: what the thing is
+for, or what goes wrong without it. Then the technical detail.
+
+- Define a term the first time it appears, in a short clause or a parenthesis.
+- Keep internal names out of prose, or gloss them at once: "gate" (the four
+  conditions), "parity" (the local and deployed copies agree), "miter" (the
+  corner where two offset edges meet), "digest" (a fingerprint of the old
+  output).
+- Prefer the physical description: "the line bends more tightly" before
+  "curvature increases".
+- Keep the tables; they serve the reader who already knows the terms.
+
 ## Checking
 
 ```sh
