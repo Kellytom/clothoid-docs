@@ -12,7 +12,7 @@ All notable changes to the documentation are recorded here. The format follows
   subject notes, and the spine layer's own documents.
 - Generated HTML for the ornament board, piece model, primal studies, principle
   cards, and the spine studies.
-- Runnable examples for curl, ribbon and node frames.
+- Runnable examples for curl, ribbon and node frameworks.
 - The shared stylesheet, the app CSS, a Makefile, and a build page.
 - Context pages: the plan, the vocabulary, the ornaments corpus, the house
   conventions from `grid-8`.

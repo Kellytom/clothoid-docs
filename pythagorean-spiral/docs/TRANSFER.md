@@ -58,19 +58,19 @@ frame         anchor (0,0), heading east, angle 0 in every cap
 The residual is the lattice, not the arithmetic: each chord's turn is rounded to a whole triangle angle, so the gap grows with alpha and with curvature. At 0.05 degrees the median is under half a percent of the cap's length; the worst cases are the caps whose curvature changes fastest, and they want a finer alpha or shorter chords, both of which the float hybrid can now afford.
 
 
-## 3. Terminals: geometry without a frame
+## 3. Terminals, now with a framework
 
-The terminals are `150` ends across two extractors, stored as cubic spans in page units. They transfer as *geometry* -- a rotation, scale and offset turn them into placed cubics -- but they carry no anchor and no heading, because they were cut out of a finished outline at a seam. The frame has to be recovered from the seam, or recorded when the terminal is extracted.
+The terminals are `150` ends across two extractors, stored as cubic spans in page units. They now carry a framework as well: `anchor` at the seam and `heading` outward, in page units with +y up, written by `scripts/extract-terminals.py` for every end. The first span can be a zero-length seam, so the direction comes from the first real one.
 
 ```text
 terminals      cubic spans, page units
-anchor         absent
-heading        absent
-transfer       one affine call once a frame exists
-missing datum  the seam's point and direction
+anchor         stored, +y up
+heading        stored, outward
+applies        150 ends (88 Stage Two, 62 LAC)
+verified       heading·tangent 0.999999 minimum
 ```
 
-That is the next change in the main package, not here: the extractor should write `anchor` and `heading` beside each terminal, exactly as the caps already do. With that, attachment is the same operation as `fork`: read a frame, rotate by its exact direction, scale, translate.
+Attachment is now the same operation as `fork`: read the framework, rotate by it, scale, translate. A cap placed at a terminal framework lands on the seam by construction rather than by eye.
 
 
 ## 4. What is ready
@@ -81,10 +81,10 @@ That is the next change in the main package, not here: the extractor should writ
 | scale by a rational | exact, tested |
 | fit to a 200 x 250 page | integer grid, tested |
 | caps to the new curve | 36 cap files, median gap 0.44% |
-| terminals with a frame | blocked: no frame stored |
+| terminals with a framework | 150 stored, 2026-10-29 |
 | arbitrary angles | float only; quantized |
 
-Placement is the piece that had to exist first: caps, terminals, mirrors and branches all reduce to it. The caps are close to ready; the terminals need one field added where they are cut.
+Placement is the piece that had to exist first: caps, terminals, mirrors and branches all reduce to it. Both sides now have what they need; attaching one to the other is the next check.
 
 
 ## Reproduce

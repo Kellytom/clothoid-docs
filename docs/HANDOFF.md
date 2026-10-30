@@ -311,7 +311,7 @@ mean is 0.04: the lobes are separate streaks, not a mass. More overlap (more
 lobes per puff, or a larger `SCALE`), not a larger factor: the operator has
 fixed the number at 80 per cent.
 
-**Give the terminals a frame.** In `scripts/extract-terminals.py`, record the
+**Give the terminals a framework.** In `scripts/extract-terminals.py`, record the
 seam's point and tangent beside each terminal's cubic spans (`anchor`,
 `heading`), the way `out/caps` already carries an anchor. Then the 150 ends can
 be attached with one affine call (`place.place`) and the transfer is complete.

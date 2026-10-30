@@ -120,7 +120,7 @@ cd .. && .venv/bin/python pythagorean-spiral/scripts/compare_bertolazzi.py
    `docs/TRANSFER.md`. Caps transfer as measured approximations; terminals are
    blocked on a missing frame (add `anchor` and `heading` to the extractor's
    output). Next: attach a terminal once that field exists, and a cap at a
-   node frame rather than at the origin.
+   node framework rather than at the origin.
 6. **Rails and taper — done 2026-10-28** in `ribbon.py`, with ten tests; every
    study in `docs/GALLERY.md` is a filled ribbon. Still missing: a variable
    width along the spine (serration, rib), caps and round terminals, and a

@@ -21,17 +21,17 @@ in new prose.
 |---|---|
 | Spine | The drawn curve through the anchors. Not "skeleton", not "Hermite". |
 | Anchor | The exact point and its exact heading. |
-| Node frame | That anchor plus its tangent and normal: the datum a branch attaches to. |
+| Node framework | That anchor plus its tangent and normal: the datum a branch attaches to. |
 | Knot | A span boundary where two cubics meet. |
 
 ## Rules
 
 - Say **interpolated spine**, not Hermite, except in one parenthesis.
-- A node frame is a *view* of an anchor, not a second store: the normal is the
-  heading turned a quarter turn.
+- A node framework is a *view* of an anchor, not a second store: the normal is
+  the heading turned a quarter turn.
 - Heading is signed; tangent is not. Say which one a function takes.
-- "Frame" alone means axes (coordinate, Frenet); never use it for the set of
-  nodes. The collective is "the node frames", or "the frame field" in
-  differential-geometry prose.
+ The collective is "the node frameworks", or "the framework field" in
+  differential-geometry prose. "Frame" alone still means the render frame
+  (`--frame WxH`) or coordinate axes; it is not the attachment datum.
 - 90 degree corners are cusps, exact as a swap. 30 and 45 degrees are not in
   any Pythagorean rotation group and stay approximate.
