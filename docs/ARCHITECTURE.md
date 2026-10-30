@@ -79,6 +79,7 @@ Until then, "central" describes intent rather than practice.
 | To use the browser tool | [Web application guide](WEB-GUIDE.md) |
 | The words, and how the two sides' vocabularies map | [Vocabulary](../VOCABULARY.md) |
 | What is true today, and what is next | [Current truth](HANDOFF.md) |
+| The spine layer, step by step | [Spine guide](SPINE.md) |
 | The spine layer in depth | [Spine explainer](../spine/EXPLAINER.md) |
 | How the folder is organised | [Documentation index](README.md) |
 

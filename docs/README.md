@@ -12,6 +12,7 @@ What is in this folder, which pages are generated, and where new writing belongs
 | `REVIEW.md` | Architecture and print review; act after the current work. |
 | `ARCHITECTURE.md` | How the engine and the spine layer fit, and what is not wired yet. |
 | `WEB-GUIDE.md` | The browser workbench: controls, the design recipe, the status line, the limits. |
+| `SPINE.md` | The spine layer step by step: turns, closure, cusps, rails, and a worked S-curve. |
 
 ## Handwritten reference
 
