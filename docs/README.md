@@ -10,6 +10,7 @@ What is in this folder, which pages are generated, and where new writing belongs
 | `HANDOVER.md` | Durable reference: architecture, deploy, security, decisions. Long on purpose. |
 | `BACKLOG.md` | Execution detail for W01–W26 (the work items on the board). |
 | `REVIEW.md` | Architecture and print review; act after the current work. |
+| `ARCHITECTURE.md` | How the engine and the spine layer fit, and what is not wired yet. |
 
 ## Handwritten reference
 

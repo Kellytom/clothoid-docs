@@ -40,6 +40,7 @@ nav:
   - Home: index.md
   - Plan: PLAN.md
   - Vocabulary: VOCABULARY.md
+  - Architecture: docs/ARCHITECTURE.md
   - Documentation:
       - Index: docs/README.md
       - Current truth: docs/HANDOFF.md
