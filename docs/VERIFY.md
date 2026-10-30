@@ -9,7 +9,7 @@ Four checks, each answering a different question.
 ```
 
 215 tests: the model, pieces, ends, junctions, clearance, the web API, the
-password gate, and the board's principle cards. This is the definition of "the
+password gate, and the work board's principle cards. This is the definition of "the
 engine works". The count is carried from 2026-10-27; nothing under `web/`,
 `clothoid_lab/`, `csrc/` or `tests/` has changed since.
 

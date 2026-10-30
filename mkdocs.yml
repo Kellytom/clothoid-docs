@@ -55,7 +55,7 @@ nav:
       - Primals: docs/PRIMAL.md
   - Reference:
       - Recovered corpus: docs/CORPUS.md
-      - Work items and the board: docs/WORK.md
+      - Work items and the work board: docs/WORK.md
       - Generated pages: generated.md
       - The 3125 lattice: docs/clothoid-grid-3125.md
       - Caps: docs/caps.md

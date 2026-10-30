@@ -83,7 +83,7 @@ Until then, "central" describes intent rather than practice.
 | The spine layer, step by step | [Spine guide](SPINE.md) |
 | The curve model in detail | [Curve model](CURVE-MODEL.md) |
 | The recovered plates and their formats | [Recovered corpus](CORPUS.md) |
-| Work items, plates and decisions | [Work items and the board](WORK.md) |
+| Work items, plates and decisions | [Work items and the work board](WORK.md) |
 | What passes, and how | [Verification](VERIFY.md) |
 | What works today | [Status](STATUS.md) |
 | Who wrote the engine | [Credits](CREDITS.md) |

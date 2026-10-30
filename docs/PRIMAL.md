@@ -69,9 +69,9 @@ and water than to air. When the archetypes start, their spans should come from
 the primal vocabulary — scroll from air, leaf from water, foot and band from
 earth — rather than from new special cases.
 
-## Where this sits in the board
+## Where this sits in the work board
 
-The board's work items stop at W26. When the gate above is met, this becomes
+The work board's work items stop at W26. When the gate above is met, this becomes
 **W27 — primal studies** (with W28+ for the four elements if they need separate
-tracking), and the archetype work follows as W29. Do not add plates to the board
+tracking), and the archetype work follows as W29. Do not add plates to the work board
 before their grammar exists; that is the mistake the catalogue already shows.

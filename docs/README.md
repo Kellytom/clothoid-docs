@@ -8,7 +8,7 @@ What is in this folder, which pages are generated, and where new writing belongs
 |---|---|
 | `HANDOFF.md` | Current truth: local, remote, tests, git, risks, next move. Written by `/fhandoff`; do not hand-edit the state lines. |
 | `HANDOVER.md` | Durable reference: architecture, deploy, security, decisions. Long on purpose. |
-| `BACKLOG.md` | Execution detail for W01–W26 (the work items on the board). |
+| `BACKLOG.md` | Execution detail for W01–W26 (the work items on the work board). |
 | `REVIEW.md` | Architecture and print review; act after the current work. |
 | `ARCHITECTURE.md` | How the engine and the spine layer fit, and what is not wired yet. |
 | `WEB-GUIDE.md` | The browser workbench: controls, the design recipe, the status line, the limits. |
@@ -53,7 +53,7 @@ What is in this folder, which pages are generated, and where new writing belongs
 - The app is **+y up**, page 200 × 250 mm. Recovered page data is stored as
   found, which is y-down — say so when you quote it.
 - `W` numbers are work items and `P` numbers are plates; do not renumber them.
-- Generated pages carry links back to the board; keep that shape when adding
+- Generated pages carry links back to the work board; keep that shape when adding
   one.
 - The spike has its own docs and its own generators:
   `pythagorean-spiral/docs/` (`EXPLAINER`, `GALLERY`, `EXTREMES`, `TRANSFER`,

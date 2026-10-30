@@ -1,6 +1,6 @@
 # Backlog — the ornament pass
 
-The **order** is chosen on the visual board: [`docs/ornament-board.html`](ornament-board.html).
+The **order** is chosen on the work board: [`docs/ornament-board.html`](ornament-board.html).
 The twenty fleur studies are a **subpage** — [`docs/fleur-studies.html`](fleur-studies.html) —
 because they are a working set, not finished plates. The board carries **85
 plates** (45 catalogue ornaments, 27 caps, 9 leaves, 4 presets), **26 work
