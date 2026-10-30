@@ -81,6 +81,12 @@ Until then, "central" describes intent rather than practice.
 | The words, and how the two sides' vocabularies map | [Vocabulary](../VOCABULARY.md) |
 | What is true today, and what is next | [Current truth](HANDOFF.md) |
 | The spine layer, step by step | [Spine guide](SPINE.md) |
+| The curve model in detail | [Curve model](CURVE-MODEL.md) |
+| The recovered plates and their formats | [Recovered corpus](CORPUS.md) |
+| Work items, plates and decisions | [Work items and the board](WORK.md) |
+| What passes, and how | [Verification](VERIFY.md) |
+| What works today | [Status](STATUS.md) |
+| Who wrote the engine | [Credits](CREDITS.md) |
 | The spine layer in depth | [Spine explainer](../spine/EXPLAINER.md) |
 | How the folder is organised | [Documentation index](README.md) |
 

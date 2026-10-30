@@ -1,7 +1,3 @@
-> Published copy. Deployment identifiers are redacted and local
-> paths (the reference photographs, the token) are not present in
-> this repository. Treat the state as carried from the private repo.
-
 # clothoid-lab handoff
 
 **Updated:** 2026-10-29  
@@ -44,13 +40,19 @@ remote MVP now exist.
   (not re-run in the handoff).
 - **Local tests:** 215 pass — **carried** from 2026-10-27; the tree is clean
   under `web/`, `clothoid_lab/`, `csrc/` and `tests/` at the 2026-10-29 probe.
-- **Git:** HEAD `d2b49e3`; the handoff commit sits on top. The code tree is
-  clean. `reference/` has only untracked images (`reference/1/`,
+- **Git:** HEAD `be967fb`; the handoff commit sits on top. Uncommitted
+  spike edits in `pythagorean-spiral/scripts/cloud.py` and `docs/cloud.html`
+  (the v1/v2 veil work) and two untracked photos at the root; leave both. `reference/` has only untracked images (`reference/1/`,
   `reference/hard/`, an `IMG_*` dump) and no tracked change at the 2026-10-29
   probe. `out/play-template.svg` is untracked.
 - **Untracked user file:** `out/play-template.svg`; leave it alone.
 - **Docs:** `docs/HANDOVER.md` is the durable reference;
   `docs/HANDOVER.html` is its browser mirror.
+- **Public docs (2026-10-29):** `github.com/Kellytom/clothoid-docs`, site
+  `kellytom.github.io/clothoid-docs/` — the Markdown, generated HTML, spine
+  package, examples and context pages, with photographs and deployment
+  identifiers removed. Built by MkDocs Material; sitemap, robots and
+  `llms.txt` present.
 
 ## What changed this session
 
@@ -311,7 +313,7 @@ mean is 0.04: the lobes are separate streaks, not a mass. More overlap (more
 lobes per puff, or a larger `SCALE`), not a larger factor: the operator has
 fixed the number at 80 per cent.
 
-**Give the terminals a framework.** In `scripts/extract-terminals.py`, record the
+**Give the terminals a frame.** In `scripts/extract-terminals.py`, record the
 seam's point and tangent beside each terminal's cubic spans (`anchor`,
 `heading`), the way `out/caps` already carries an anchor. Then the 150 ends can
 be attached with one affine call (`place.place`) and the transfer is complete.

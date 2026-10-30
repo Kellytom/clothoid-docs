@@ -1,7 +1,3 @@
-> Published copy. Deployment identifiers are redacted and local
-> paths (the reference photographs, the token) are not present in
-> this repository. Treat the state as carried from the private repo.
-
 # clothoid-lab handover
 
 **Updated:** 2026-10-25  
@@ -29,7 +25,7 @@ The remote page and `/api/render` were smoke-tested after deployment:
 
 | Item | Value |
 |---|---|
-| Account | `<account>` |
+| Account | `kelly.aquinas.tom@gmail.com` |
 | Project | `<your-gcp-project>` |
 | Region | `us-central1` |
 | Cloud Run service | `clothoid-web` |

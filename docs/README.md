@@ -14,6 +14,12 @@ What is in this folder, which pages are generated, and where new writing belongs
 | `WEB-GUIDE.md` | The browser workbench: controls, the design recipe, the status line, the limits. |
 | `SPINE.md` | The spine layer step by step: turns, closure, cusps, rails, and a worked S-curve. |
 | `GLOSSARY.md` | Plain-English terms for both sides, and how the vocabularies map. |
+| `CURVE-MODEL.md` | Design/Segment, Piece/Trace, terminals, junctions, Section, Bundle, clearance, grades. |
+| `CORPUS.md` | The recovered plates, the terminal and spiral formats, units, regenerating. |
+| `WORK.md` | P/W/D registers, the order of work, the spine layer's promotion gate. |
+| `VERIFY.md` | The four checks and what passing means. |
+| `STATUS.md` | What works today, what is not wired. |
+| `CREDITS.md` | The engine's authors, the corpus, the licences. |
 
 ## Handwritten reference
 

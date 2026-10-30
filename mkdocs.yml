@@ -37,29 +37,30 @@ markdown_extensions:
 docs_dir: site_src
 site_dir: site
 nav:
-  - Home: index.md
-  - Plan: PLAN.md
-  - Vocabulary: VOCABULARY.md
-  - Architecture: docs/ARCHITECTURE.md
-  - Web application guide: docs/WEB-GUIDE.md
-  - Spine layer guide: docs/SPINE.md
-  - Glossary: docs/GLOSSARY.md
-  - Documentation:
-      - Index: docs/README.md
-      - Current truth: docs/HANDOFF.md
-      - Durable reference: docs/HANDOVER.md
-      - Backlog: docs/BACKLOG.md
-      - Review: docs/REVIEW.md
+  - Start here:
+      - Home: index.md
+      - Architecture: docs/ARCHITECTURE.md
+      - Plan: PLAN.md
+      - Documentation index: docs/README.md
+  - Guides:
+      - Web application guide: docs/WEB-GUIDE.md
+      - Spine layer guide: docs/SPINE.md
+      - Glossary: docs/GLOSSARY.md
+      - Vocabulary: VOCABULARY.md
+  - Concepts:
+      - Curve model: docs/CURVE-MODEL.md
       - Philosophy: docs/PHILOSOPHY.md
       - Clearance: docs/CLEARANCE.md
       - Junctions: docs/JUNCTION.md
       - Primals: docs/PRIMAL.md
-      - Caps: docs/caps.md
+  - Reference:
+      - Recovered corpus: docs/CORPUS.md
+      - Work items and the board: docs/WORK.md
+      - Generated pages: generated.md
       - The 3125 lattice: docs/clothoid-grid-3125.md
+      - Caps: docs/caps.md
       - The web MVP: docs/web.md
-      - History: docs/PROJECT.md
-      - Older tasks: docs/TODO.md
-  - Spine layer:
+  - Spine layer in depth:
       - Explainer: spine/EXPLAINER.md
       - Six studies: spine/GALLERY.md
       - Extremes: spine/EXTREMES.md
@@ -68,10 +69,20 @@ nav:
       - The cloud in four arcs: spine/CLOUD-FORM.md
       - Spine handover: spine/HANDOVER.md
       - Spine audit: spine/AUDIT.md
-  - Generated pages: generated.md
-  - Ornaments source: ORNAMENTS.md
-  - House conventions: GRID8.md
-  - Contributing: CONTRIBUTING.md
-  - Changelog: CHANGELOG.md
-  - Code of conduct: CODE_OF_CONDUCT.md
-  - Licence: LICENSE.md
+  - Project:
+      - Status: docs/STATUS.md
+      - Verification: docs/VERIFY.md
+      - Handover: docs/HANDOVER.md
+      - Current truth: docs/HANDOFF.md
+      - Backlog: docs/BACKLOG.md
+      - Review: docs/REVIEW.md
+      - Contributing: CONTRIBUTING.md
+      - Changelog: CHANGELOG.md
+      - Code of conduct: CODE_OF_CONDUCT.md
+      - Licence: LICENSE.md
+      - Credits: docs/CREDITS.md
+  - Archive:
+      - History: docs/PROJECT.md
+      - Older tasks: docs/TODO.md
+      - Ornaments source: ORNAMENTS.md
+      - House conventions: GRID8.md
