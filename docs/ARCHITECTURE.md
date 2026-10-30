@@ -77,6 +77,7 @@ Until then, "central" describes intent rather than practice.
 |---|---|
 | Why the project exists and in what order | [The plan](../PLAN.md) |
 | To use the browser tool | [Web application guide](WEB-GUIDE.md) |
+| A plain-English term | [Glossary](GLOSSARY.md) |
 | The words, and how the two sides' vocabularies map | [Vocabulary](../VOCABULARY.md) |
 | What is true today, and what is next | [Current truth](HANDOFF.md) |
 | The spine layer, step by step | [Spine guide](SPINE.md) |
