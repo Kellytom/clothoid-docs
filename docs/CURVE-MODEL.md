@@ -1,91 +1,108 @@
 # The curve model
 
 The engine draws one line at a time. You give it a starting point, a direction,
-and a list of pieces; each piece bends by a stated amount, and that bend changes
-steadily along the piece. It then wraps the line in a drawing so it can have
-thickness, shaped ends, a mirror image, and a list of places it is allowed to
-touch something else.
+and a list of segments; each segment bends by a stated amount, and that bend
+changes steadily along its length. It then wraps that line in a complete drawing
+so it can have thickness, shaped ends, a mirror image, and a list of places where
+it is permitted to touch another line.
 
-## The recipe: a design
+## The recipe: a `Design`
+
+At the data level a curve is a JSON object with an anchor and an ordered list of
+segments:
 
 ```json
-{"anchor": {"x": 40, "y": 80, "angle": 0},
- "segments": [{"kappa0": 0, "kd": 0.002, "length": 40}]}
+{
+  "anchor": {"x": 40.0, "y": 80.0, "angle": 0.0},
+  "segments": [{"length": 40.0, "kd": 0.002, "kappa0": 0.0}]
+}
 ```
 
-| Field | In plain words |
+| Field | Meaning |
 |---|---|
-| `anchor` | Where the line starts, and which way it points. |
-| `segments` | The pieces of the line, in order. |
-| `kappa0` | How tightly the line is bending at the start of this piece. |
-| `kd` | How quickly that bend changes along the piece. |
-| `length` | How long the piece is. |
+| `anchor` | Where the line starts on the sheet (`x`, `y`), and which way it points (`angle`). |
+| `segments` | The pieces of the line, in drawing order. |
+| `length` | How long this segment is along the curve, in millimetres. |
+| `kd` | How quickly the bend changes along the segment (`dκ/ds`). Positive turns left, negative turns right, zero is straight. |
+| `kappa0` | How tightly the line is bending at the start of this segment. |
 
-"Curvature" is only how tight the bend is: a small number is nearly straight, a
-large one is a tight curl. `kappa0: null` means "carry on with the bend the
-previous piece ended with", so the line does not jolt at the join.
+> **What curvature means.** It is a number for how tight the bend is: small is
+> nearly straight, large is a tight curl. Setting `"kappa0": null` means "carry
+> on with the bend the previous piece ended with", so the line does not jolt at
+> the join.
 
-Distances are millimetres, angles are radians, zero points east, and y increases
-upward.
+Coordinates and units:
 
-## The drawing: a piece
+- distances in **millimetres**;
+- angles in **radians**;
+- angle `0.0` points **east**;
+- **+y increases upward** from the bottom of the sheet.
 
-A **Piece** is the whole drawing. It holds named **traces**, an optional mirror
-image (which can be overridden per trace), layers, and a list of declared
-**contacts**.
+## The drawing: a `Piece`
 
-A **Trace** is one full line: its centre line, an optional thickness, the shapes
-at its two ends, and whether it is mirrored.
+- **`Piece`:** the top-level drawing. It holds named traces, an optional global
+  mirror (overridable per trace), layers, and a list of declared contacts.
+- **`Trace`:** one full line: its centreline path, its ribbon width, the shapes
+  at its two ends, and whether it is mirrored.
 
-`render_piece()` builds every trace once and writes a single SVG, so the sheet,
-the scale and the upward direction are decided in one place.
+`render_piece()` builds every trace once and writes one SVG, so the sheet (the
+standard 200 × 250 mm page), the scale and the upward +y orientation are decided
+in a single place.
 
-## The ends
+## The ends: terminals
 
-**Terminal** is the general word for how a line ends.
+**Terminal** is the general word for how a stroke finishes.
 
-- A **cap** closes an end without the line turning more than 120°: `butt` (cut
-  square), `point` (sharp), `arc` (a 5 mm dome), `round` (a half-width dome).
-- A **taper** narrows the line over a length: `taper`, `cone`, and `bulb` (the
-  old Stage II width curve, not a wrapped ornament bulb).
+- **Caps** close a line without turning it more than 120°: `butt` (cut square),
+  `point` (sharpened), `arc` (a 5 mm dome), `round` (a half-width dome).
+- **Tapers** narrow the line over a set distance: `taper` (linear), `cone`
+  (pointed), and `bulb` (the legacy Stage II width profile, not an ornamental
+  wrapped bulb).
+- **Turned terminals** curl back further than 120° — a volute eye, a scroll, a
+  coiled end. *Planned; not built.*
 
-Ends that turn further than 120° are *turned terminals*. They are not built yet.
+## Corners, joins and junctions
 
-## Corners and joins
+- **Fillet:** rounds an angular corner with a short circular arc that touches
+  both edges. The line and the arc meet in the same direction (G1), but the bend
+  changes abruptly where the arc starts and where it ends.
+- **Junction:** a branch meeting a trunk at a declared merge. A junction carries
+  the corner, the gap that must survive inside the fork, the rounding or blend,
+  the taper, and the contacts where the strokes are allowed to touch.
+- **Clothoid blend:** the easing transition that would remove the sudden change
+  in bend at a junction. *Planned; not built.*
 
-A **fillet** rounds a corner with a short arc that touches both sides. The line
-and the arc meet in the same direction, but the bend suddenly becomes tighter
-where the arc starts and looser where it ends.
+## Measuring across the line: `Section` and `Bundle`
 
-A **junction** is a branch meeting a trunk, with a declared place for them to
-merge. It carries the corner, the gap that must survive inside the fork, the
-rounding or blend, the taper, and the declared contacts. A clothoid blend, which
-would remove the sudden change in bend, is planned.
+- **`Section`:** one slice across a line at a point along its length: the
+  centreline point, the direction, the width, and the left and right edges.
+- **`Bundle`:** a group of named lines that must keep a stated minimum gap and
+  not touch. It has a footprint for placing the group as one unit; the footprint
+  does not clip anything.
 
-## Reading a line across its width
+## Gaps and collisions: clearance
 
-A **Section** is a slice across a line at one place: the centre point, the
-direction, the width, and the two edges.
+Clearance measures the closest distance between two strokes and lists
+everywhere they cross.
 
-A **Bundle** is a box of named full lines that must not touch, with a stated
-minimum gap and a footprint. The box is for placing the group, not for clipping
-it.
+- **Intended touches.** Two lines may touch or cross only where a `Contact` is
+  declared. A contact has a point, a radius, the two line names, and it waives
+  the clearance rule *inside* its radius only; outside, the rule applies.
+- **Unintended collisions.** A crossing with no contact is reported as an
+  interference.
+- **Tolerances.** Every measurement carries a small margin, so the report says
+  **pass**, **warning** or **violation** instead of pretending to know the last
+  hundredth of a millimetre.
 
-## Gaps between lines
+## How lines meet
 
-Clearance is the smallest distance between two drawn lines, plus a list of
-places where they cross. A crossing is allowed only where a **Contact** says it
-is intended. Every measurement carries a small margin of error, so the report
-says *pass*, *warning* or *violation* rather than pretending the last tenth of a
-millimetre is known.
+| Grade | Name | In plain words |
+|---|---|---|
+| **G0** | positional | The ends touch, but the lines point in different directions: a corner or kink. |
+| **G1** | tangent | They point in the same direction, so there is no corner, but the tightness of the bend changes suddenly. |
+| **G2** | curvature | They point the same way *and* bend by the same amount: an invisible transition. |
 
-## Joins, in plain words
-
-| Grade | What it means |
-|---|---|
-| **G0** | The ends touch, but the lines point in different directions: a corner. |
-| **G1** | They point the same way, so there is no corner, but the bend changes suddenly. |
-| **G2** | They point the same way *and* bend by the same amount: no visible change at all. |
-
-The engine's joins are G1. G2 appears where a width law or a blend supplies it,
-and not at every corner.
+**What the engine actually does.** By construction, every join in
+`clothoid_lab` is **G1**. True **G2** appears only where a width law or a
+deliberate blend provides it; an unblended corner or junction still has a
+curvature step, and the reports say so.
